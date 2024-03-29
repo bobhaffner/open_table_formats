@@ -1,6 +1,12 @@
 ---
 marp: true
+
 theme: gaia
+
+class:
+- default
+
+
 ---
 
 # Open Table Formats
@@ -98,6 +104,27 @@ We’ll be focusing on Iceberg for the rest of the presentation
 
 # The role of Data Lakehouse in a Data Platform
 
-![w:1000 h:300](../images/dlh.jpeg)
+![w:1100 h:300](../images/dlh.png)
 
 
+<!--
+Lakehouse can fulfill your OLAP needs as long as you can live with performance :-)
+
+Spark and SQL(Presto or Trino or Athena) are two popular ways to write, update and read data stored in open table formats.   Another way is Flink
+
+-->
+
+---
+
+# The role of Data Lakehouse in a Data Platform
+
+![w:1100 h:300](../images/dlh_with_dw.png)
+
+<!--
+And Lakehouses can be complementary to Data Warehouses where Data Warehouses handle queries that require faster response time
+
+-->
+
+---
+
+# Athena and Iceberg Demo
