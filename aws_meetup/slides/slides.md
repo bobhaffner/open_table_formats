@@ -9,6 +9,8 @@ class:
 
 ---
 
+
+
 # Open Table Formats
 ## The Foundation of the Data Lakehouse
 
@@ -24,7 +26,7 @@ class:
 
 ---
 
-# Data Lakehouse Intro
+## Data Lakehouse Intro
 
 * First there was the Data Warehouse
 * Then the Data Lake
@@ -45,7 +47,7 @@ And now, Data Lakehouses, a hybrid approach.  An attempt to combine the good thi
 
 ---
 
-# Open Table Formats Intro
+## Open Table Formats Intro
 
 * The most important tech behind Data Lakehouses
 * A layer that sits on top of object stores that brings database-like features to Data Lakes
@@ -61,7 +63,7 @@ Not file formats (parquet or orc)
 
 ---
 
-# Open Table Formats Intro
+## Open Table Formats Intro
 
 * The Database-Like features
     * ACID transactions
@@ -92,7 +94,7 @@ The Players
 
 - Delta Lake – Open source, but heavily controlled by Databricks.  The default choice if you’re Databricks and Azure
 - Apache Hudi. Pronounced Hoodie.  The most mature of the three.  Started at Uber.  Strong in the streaming space
-- Apache Iceberg – Started at Netflix – Lots of momentum and backing from big vendors such as Snowflake, Confluent, Dremio, AWS and Cloudera
+- Apache Iceberg – Started at Netflix – Lots of momentum and backing from big vendors such as Snowflake, Google, Confluent, Dremio, AWS and Cloudera
 - and there are things like Apache XTable that act as a universal interface to these 3.  Maybe some commercial solutions as well
 
 We’ll be focusing on Iceberg for the rest of the presentation
@@ -101,10 +103,36 @@ We’ll be focusing on Iceberg for the rest of the presentation
 
 ---
 
+# How does Iceberg work?
 
-# The role of Data Lakehouse in a Data Platform
+---
 
-![w:1100 h:300](../images/dlh.png)
+
+![bg center:50% 50%](../../images/iceberg_metadata.png)
+
+<!--
+Catalog
+What tables exist.  This is what Athena and Spark connect to
+
+Metadata Files
+Table level - Schema info, partion info, snapshot/versin info
+
+Manifest List Files
+Contains a list of all the manifests that make up a snaphot or version
+
+Manifest Tiles
+Contains a list of all the data files and statistics about those data files.  Upper and lower bounds for a column.  eg this data file contains all data for 2023.   This allows for more efficient querying
+
+This heirachal meta file approach can be confusing but it allows for the best performance
+
+-->
+
+---
+
+
+## The role of Data Lakehouse in a Data Platform
+
+![w:1100 h:250](../../images/dlh.png)
 
 
 <!--
@@ -116,9 +144,9 @@ Spark and SQL(Presto or Trino or Athena) are two popular ways to write, update a
 
 ---
 
-# The role of Data Lakehouse in a Data Platform
+## The role of Data Lakehouse in a Data Platform
 
-![w:1100 h:300](../images/dlh_with_dw.png)
+![w:1100 h:300](../../images/dlh_with_dw.png)
 
 <!--
 And Lakehouses can be complementary to Data Warehouses where Data Warehouses handle queries that require faster response time
@@ -127,4 +155,4 @@ And Lakehouses can be complementary to Data Warehouses where Data Warehouses han
 
 ---
 
-# Athena and Iceberg Demo
+## Athena and Iceberg Demo
