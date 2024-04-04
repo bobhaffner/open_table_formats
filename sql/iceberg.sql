@@ -31,21 +31,25 @@ SELECT phone,
 FROM customer_orders_iceberg
 WHERE custkey = '448095821';
 -- point in time query with snapshot id
-SELECT *
+SELECT committed_at,
+    snapshot_id,
+    manifest_list
 FROM "customer_orders_iceberg$snapshots";
 SELECT phone
-FROM customer_orders_iceberg FOR VERSION AS OF 3078679543727651874
+FROM customer_orders_iceberg FOR VERSION AS OF 304464286438925000
 WHERE custkey = '448095821';
 -- point in time query using timestamp
 SELECT phone
-FROM customer_orders_iceberg FOR TIMESTAMP AS OF (current_timestamp - interval '3' minute)
+FROM customer_orders_iceberg FOR TIMESTAMP AS OF (current_timestamp - interval '2' minute)
 WHERE custkey = '448095821';
 -- schema evolution - adding Day Of Week
 ALTER TABLE customer_orders_iceberg
 ADD COLUMNS (dow int);
 UPDATE customer_orders_iceberg
 SET dow = day_of_week(CAST(orderdate as date));
-SELECT *
+SELECT committed_at,
+    snapshot_id,
+    manifest_list
 FROM "customer_orders_iceberg$snapshots";
 SELECT orderdate,
     dow
