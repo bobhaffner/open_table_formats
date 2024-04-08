@@ -36,7 +36,7 @@ SELECT committed_at,
     manifest_list
 FROM "customer_orders_iceberg$snapshots";
 SELECT phone
-FROM customer_orders_iceberg FOR VERSION AS OF 304464286438925000
+FROM customer_orders_iceberg FOR VERSION AS OF 8761371467292690667
 WHERE custkey = '448095821';
 -- point in time query using timestamp
 SELECT phone
@@ -47,11 +47,11 @@ ALTER TABLE customer_orders_iceberg
 ADD COLUMNS (dow int);
 UPDATE customer_orders_iceberg
 SET dow = day_of_week(CAST(orderdate as date));
-SELECT committed_at,
-    snapshot_id,
-    manifest_list
-FROM "customer_orders_iceberg$snapshots";
 SELECT orderdate,
     dow
 FROM customer_orders_iceberg
 LIMIT 5;
+SELECT committed_at,
+    snapshot_id,
+    manifest_list
+FROM "customer_orders_iceberg$snapshots";

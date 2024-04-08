@@ -28,7 +28,7 @@ section {
 * Please jump in with questions along the way or at the end
 
 <!--
-
+Thanks to Improving for hosting
 -->
 
 
@@ -38,7 +38,7 @@ section {
 * Some history
 * Open Table Formats Intro
 * Apache Iceberg Intro
-* Apache Iceberg Demo
+* Athena and Iceberg Demo
 
 ---
 
@@ -63,7 +63,7 @@ And now, Data Lakehouses, a hybrid approach.  An attempt to combine the good thi
 
 # Open Table Formats Intro
 
-* The most important thing behind Data Lakehouses
+* Its the foundation of the Data Lakehouse
 * A layer that sits on top of object stores that brings database-like features to Data Lakes
 * Delivering on the Data Lake hype
 * Cheaper than Data Warehouses
@@ -96,7 +96,6 @@ Database-Like Features
 
 - Schema Evolution including Adds, Drops and Type Promotions
 
-- Table Maintenance features such as Vacuum and Compaction
 
 -->
 
@@ -124,7 +123,7 @@ We’ll be focusing on Iceberg for the rest of the presentation
 
 ---
 
-# Apache Iceberg
+# Apache Iceberg Intro
 
 ---
 
@@ -133,18 +132,18 @@ We’ll be focusing on Iceberg for the rest of the presentation
 
 <!--
 
-The fundamental problem.  What data files are in a table, how do we make changes to those data files and how do effiently query our table
+Iceberg uses a sophisticated Metadata Layer comprised of 4 different levels
 
-Catalog
+1. Catalog
 This is what Athena and Spark connect to. What tables exist and what is the current set of metadata.  
 
-Metadata Files
+2. Metadata Files
 This includes information about the table’s schema, partition information, snapshots, and which snapshot is the current one.
 
-Manifest List Files
+3. Manifest List Files
 Contains a list of all the manifests that make up a snaphot or version. It can also contain partition level info for more efficient pruning
 
-Manifest Files
+4. Manifest Files
 Contains a list of all the data files and statistics about those data files.  Upper and lower bounds for a column.  eg this data file contains all data for 2023.   This allows for more efficient pruning
 
 This heirachal meta file approach can be confusing but it allows for minimal metadata rewrites and paralellized data reading 
